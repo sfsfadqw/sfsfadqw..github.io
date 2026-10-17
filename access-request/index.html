@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Request — запросы доступа</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo"></span><b>Access Request</b></div>
+    <nav>
+      <button class="nav active" data-nav="list">Запросы</button>
+      <button class="nav" data-nav="create">Создать запрос</button>
+      <button class="nav" data-nav="help">Справка</button>
+    </nav>
+  </aside>
+  <main class="content">
+    <!-- СПИСОК -->
+    <section id="view-list">
+      <h1>Запросы доступа</h1>
+      <p class="sub">Все ваши запросы на доступ к ресурсам организации.</p>
+      <button id="btn-create" class="btn primary">Создать запрос</button>
+      <div id="empty" class="empty hidden">
+        <h2>Запросов пока нет</h2>
+        <p>Создайте первый запрос на доступ — он появится в этом списке.</p>
+        <button id="btn-first" class="btn primary">Создать первый запрос</button>
+      </div>
+      <div id="cards"></div>
+    </section>
+
+    <!-- ФОРМА -->
+    <section id="view-create" class="hidden">
+      <h1>Создать запрос</h1>
+      <p class="sub">Заполните данные. Поля со * обязательны.</p>
+      <form id="form" class="form" novalidate>
+        <label>Ресурс *
+          <input id="f-resource" type="text" placeholder="Например: База данных клиентов">
+          <small class="hint">Название информационного ресурса.</small>
+          <small class="err hidden" id="e-resource">Укажите ресурс.</small>
+        </label>
+        <label>Тип доступа *
+          <select id="f-access">
+            <option>Чтение</option>
+            <option>Запись</option>
+            <option>Администрирование</option>
+          </select>
+        </label>
+        <label>Основание *
+          <textarea id="f-reason" rows="3" placeholder="Причина запроса"></textarea>
+          <small class="hint">Минимум 15 символов.</small>
+          <small class="err hidden" id="e-reason">Основание должно содержать не менее 15 символов.</small>
+        </label>
+        <label>Срок
+          <select id="f-term">
+            <option>1 месяц</option>
+            <option selected>3 месяца</option>
+            <option>6 месяцев</option>
+            <option>Бессрочно</option>
+          </select>
+        </label>
+        <div class="row">
+          <button type="submit" id="btn-submit" class="btn primary">Создать запрос</button>
+          <button type="button" id="btn-cancel" class="btn secondary">Отмена</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- КАРТОЧКА -->
+    <section id="view-detail" class="hidden">
+      <button id="btn-back" class="link">← К списку</button>
+      <h1 id="d-title">Запрос №1043</h1>
+      <span id="d-badge" class="badge">Новый</span>
+      <div class="details">
+        <div class="drow"><span>Ресурс</span><b id="d-resource"></b></div>
+        <div class="drow"><span>Тип доступа</span><b id="d-access"></b></div>
+        <div class="drow"><span>Основание</span><b id="d-reason"></b></div>
+        <div class="drow"><span>Срок</span><b id="d-term"></b></div>
+        <div class="drow"><span>Дата создания</span><b id="d-created"></b></div>
+        <div class="drow"><span>Статус</span><b id="d-status"></b></div>
+      </div>
+      <div class="row" id="d-actions"></div>
+    </section>
+
+    <!-- СПРАВКА -->
+    <section id="view-help" class="hidden">
+      <h1>Справка</h1>
+      <p class="sub">Процесс: запрос → основание → согласование → выдача. Переходы только вперёд. После «Выполнен» изменения запрещены.</p>
+    </section>
+  </main>
+</div>
+
+<!-- Модалка отклонения -->
+<div id="modal" class="dim hidden">
+  <div class="modal" style="width:480px">
+    <h2>Отклонить запрос?</h2>
+    <p>После подтверждения статус будет изменён на «Отклонён».</p>
+    <div class="row">
+      <button id="m-yes" class="btn danger">Отклонить</button>
+      <button id="m-no" class="btn secondary">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+<script src="app.js"></script>
+</body>
+</html>

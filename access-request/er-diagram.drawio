@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net" modified="2026-10-10T00:00:00.000Z" agent="opencode" version="24.7.17" type="device">
+  <diagram id="access-request-er" name="ER-диаграмма">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="t1" value="Access Request — ER-диаграмма" style="text;html=1;fontSize=22;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_users" value="USERS&#10;&#10;PK id&#10;full_name&#10;UK email&#10;department" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#FFFFFF;strokeColor=#2E6BFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_roles" value="ROLES&#10;&#10;PK id&#10;UK code&#10;name" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#FFFFFF;strokeColor=#2E6BFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="230" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_user_roles" value="USER_ROLES&#10;&#10;PK,FK user_id&#10;PK,FK role_id" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#F9FAFB;strokeColor=#98A2B3;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="270" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_access_type" value="ACCESS_TYPE&#10;&#10;PK id&#10;UK code&#10;name" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#FFFFFF;strokeColor=#F79009;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="430" width="230" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_term" value="TERM&#10;&#10;PK id&#10;UK name&#10;months" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#FFFFFF;strokeColor=#F79009;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="230" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_status" value="STATUS&#10;&#10;PK id&#10;UK code&#10;name&#10;sort_order&#10;is_final" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#FFFFFF;strokeColor=#F79009;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="430" width="230" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_request" value="ACCESS_REQUEST&#10;&#10;PK id&#10;UK number&#10;resource&#10;reason&#10;created_at&#10;FK access_type_id&#10;FK term_id&#10;FK status_id&#10;FK requester_id" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#EEF3FF;strokeColor=#2E6BFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="660" y="300" width="260" height="200" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_event" value="REQUEST_EVENT&#10;&#10;PK id&#10;event_type&#10;comment&#10;created_at&#10;FK request_id&#10;FK actor_id&#10;FK from_status&#10;FK to_status" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fillColor=#E7F7EF;strokeColor=#12B76A;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="300" width="260" height="200" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lg" value="Обозначения: PK — первичный ключ, FK — внешний ключ, UK — уникальность.&#10;Кратность: |&#8212;Один, ||&#8212;Обязательно один, }&#8212;Многие, o{&#8212;Ноль или много.&#10;USER_ROLES — промежуточная таблица для связи «многие ко многим» (USERS ↔ ROLES)." style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=10;fillColor=#F9FAFB;strokeColor=#D0D5DD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="600" width="380" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;" edge="1" parent="1" source="e_users" target="e_user_roles">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;" edge="1" parent="1" source="e_roles" target="e_user_roles">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" value="оформляет" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_users" target="e_request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" value="тип" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_access_type" target="e_request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" value="срок" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_term" target="e_request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" value="текущий" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_status" target="e_request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l7" value="история" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_request" target="e_event">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l8" value="действие" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_users" target="e_event">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l9" value="из / в" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;startFill=0;endFill=0;fontSize=11;" edge="1" parent="1" source="e_status" target="e_event">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
